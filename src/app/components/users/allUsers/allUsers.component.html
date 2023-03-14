@@ -1,0 +1,24 @@
+<div class="container-fluid">
+    <div class="row p-5">
+        <mat-card class="example-card col-3 d-flex">
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" class="align-self-end">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item>
+                    <mat-icon>edit</mat-icon>
+                    <span>Edit</span>
+                </button>
+                <button mat-menu-item>
+                    <span>Delete</span>
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </mat-menu>
+            <mat-card-header class="d-flex flex-column w-100 h-75 align-items-center">
+                <div mat-card-avatar [ngClass]="active == true? 'active' :'inactive'" class="profile-image"></div>
+                <mat-card-title class="text-center">Dipali Khatri</mat-card-title>
+                <mat-card-subtitle class="text-center">khatri_dipali@bernier-runte.io</mat-card-subtitle>
+            </mat-card-header>
+        </mat-card>
+    </div>
+</div>
