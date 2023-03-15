@@ -25,20 +25,38 @@ export class UserEffects {
       )
   });
 
-  // getUserData$ = createEffect(() => {
-  //   return this.actions$
-  //     .pipe(
-  //       ofType(users.getUser),
-  //       mergeMap(
-  //         (id) => this.service.getUser(id)
-  //           .pipe(
-  //             map(data => {
-  //               return users.getUserSuccess({data:data})
-  //             }),
-  //             catchError(error => of(users.getUserFailure(error)))
-  //           )
-  //       ),
-  //     )
-  // });
+  getUserData$ = createEffect(() => {
+    return this.actions$
+      .pipe(
+        ofType(users.getUser),
+        mergeMap(
+          (data) => this.service.getUser(data.id)
+            .pipe(
+              map(data => {
+                return users.getUserSuccess({data:data})
+              }),
+              catchError(error => of(users.getUserFailure(error)))
+            )
+        ),
+      )
+  });
+
+
+  addUser$ = createEffect(() => {
+    return this.actions$
+      .pipe(
+        ofType(users.addUser),
+        mergeMap(
+          (data) => this.service.addUser(data.user)
+            .pipe(
+              map(data => {
+                return users.addUserSuccess({user:data})
+              }),
+              catchError(error => of(users.addUserFailure(error)))
+            )
+        ),
+      )
+  });
+
   constructor(private actions$: Actions, private service:UsersService ) { }
 }

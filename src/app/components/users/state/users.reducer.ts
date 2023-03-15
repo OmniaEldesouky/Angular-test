@@ -7,10 +7,12 @@ import * as UsersActions from './users.actions';
 export const usersFeatureKey = 'users';
 
 export interface State {
-  users:userResponseData[]|null
+  users:userResponseData[]|null,
+  selectedUser:userResponseData|null
 }
 export const initialState: State = {
-    users:null
+    users:null,
+    selectedUser:null
   };
 
   export const usersReducer = createReducer<State>(
@@ -20,9 +22,25 @@ export const initialState: State = {
         ...state,
         users:action.data
       }
+    }),
+    on(UsersActions.getUserSuccess,(state,action):State=>{
+      return{
+        ...state,
+        selectedUser: action.data[0]
+      }
+    }),
+    on(UsersActions.addUserSuccess,(state,action):State=>{
+
+      return{
+        ...state,
+        // users: [
+        //   ...state.users,
+        //   {action.user}
+        // ]
+      }
     })
   );
-  
+
   export function reducer(state: State | undefined, action: Action) {
     return usersReducer(state, action);
   }
@@ -33,4 +51,8 @@ export const initialState: State = {
   export const getUsers = createSelector(
     FeatureState,
     state => state.users
+  )
+  export const getSelectedUser = createSelector(
+    FeatureState,
+    state => state.selectedUser
   )

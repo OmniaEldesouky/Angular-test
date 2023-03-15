@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { userResponseData } from 'src/app/models/userResponseData';
 import * as users from '../state/users.actions';
-import { getUsers } from '../state/users.reducer';
+import { getSelectedUser, getUsers } from '../state/users.reducer';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { UserComponent } from '../add-Edit/user/user.component';
 
@@ -15,8 +15,9 @@ import { UserComponent } from '../add-Edit/user/user.component';
 export class allUsersComponent implements OnInit {
   active:boolean=true;
   users!:Observable<userResponseData[]|null>
+  selectedUser!:userResponseData;
   constructor(private store:Store,public dialog: MatDialog){}
-   
+
   ngOnInit(): void {
     this.store.dispatch(users.getUsers());
     this.users = this.store.select(getUsers)
@@ -25,8 +26,14 @@ export class allUsersComponent implements OnInit {
     this.dialog.open(UserComponent);
   }
   editUser(id:string){
-    this.dialog.open(UserComponent,{
-      data:{}
-    });
+    this.store.dispatch(users.getUser({id: parseInt(id)}));
+    this.store.select(getSelectedUser).subscribe(res =>{
+      if(res?.id == id){
+        this.dialog.open(UserComponent,{
+          data:res
+        });
+      }})
+
+
   }
 }

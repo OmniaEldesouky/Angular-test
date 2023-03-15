@@ -5,11 +5,11 @@ export const getUsers = createAction(
     'GET_USERS_STARTS'
 );
 export const getUsersSuccess = createAction(
-    'GET_USERS_STARTS_SUCCESS',
+    'GET_USERS_SUCCESS',
     props<{ data: userResponseData[] }>()
 );
 export const getUsersFailure = createAction(
-    'GET_USERS_STARTS_FAIL',
+    'GET_USERS_FAIL',
     props<{ error: any }>()
 );
 
@@ -19,12 +19,27 @@ export const getUser = createAction(
     props<{id:number}>()
 );
 export const getUserSuccess = createAction(
-    'GET_USER_STARTS_SUCCESS',
+    'GET_USER_SUCCESS',
     props<{ data: userResponseData[] }>()
 );
 export const getUserFailure = createAction(
-    'GET_USER_STARTS_FAIL',
+    'GET_USER_FAIL',
     props<{ error: any }>()
+);
+
+
+
+export const addUser = createAction(
+  'ADD_USER_STARTS',
+  props<{user:userResponseData}>()
+);
+export const addUserSuccess = createAction(
+  'ADD_USER_SUCCESS',
+  props<{ user: userResponseData }>()
+);
+export const addUserFailure = createAction(
+  'ADD_USER_FAIL',
+  props<{ error: any }>()
 );
 
 
