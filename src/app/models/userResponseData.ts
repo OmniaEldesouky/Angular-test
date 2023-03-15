@@ -1,4 +1,5 @@
-export interface user{
+export interface userResponseData{
+    id: string,
     name: string,
     email: string,
     gender: string,
