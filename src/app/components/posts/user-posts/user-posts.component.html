@@ -1,0 +1,27 @@
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <mat-card class="user-card shadow-none my-5 d-flex flex-row justify-content-between">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{(user|async)?.name}}</mat-card-title>
+        <mat-card-subtitle>{{(user|async)?.email}}</mat-card-subtitle>
+      </mat-card-header>
+      <button mat-stroked-button color="primary" class="mx-2 align-self-center">Add Post</button>
+    </mat-card>
+  </div>
+  <div class="postsWrapper row justify-content-center p-2">
+    <mat-card class="example-card col-8 m-3" *ngFor="let post of posts | async">
+      <mat-card-header class="d-flex justify-content-between">
+        <mat-card-title class="h5" >{{post.title}}</mat-card-title>
+        <mat-icon (click)="deletePost(post.id)">delete</mat-icon>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="h6">{{post.body}}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-stroked-button color="primary" class="mx-2">LIKE</button>
+        <button mat-stroked-button>Comment</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

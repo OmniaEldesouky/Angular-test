@@ -12,6 +12,7 @@ import * as users from '../../state/users.actions';
 })
 export class UserComponent implements OnInit {
   form!:FormGroup;
+  buttonText= "Add User";
   constructor(@Inject(MAT_DIALOG_DATA) public data: user,private fb:FormBuilder,private store:Store) {}
 
   ngOnInit(): void {
@@ -22,10 +23,8 @@ export class UserComponent implements OnInit {
       email: ["", [Validators.required]],
       status: ["" ,[Validators.required]],
     });
-
     if(this.data){
-      console.log(this.data);
-
+      this.buttonText= "Edit User"
       this.form.setValue({
         name: this.data?.name,
         gender: this.data.gender,

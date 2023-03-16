@@ -26,13 +26,17 @@ import { UserComponent } from './components/users/add-Edit/user/user.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+import { UserPostsComponent } from './components/posts/user-posts/user-posts.component';
+import { postsReducer } from './components/posts/state/posts.reducer';
+import { PostsEffects } from './components/posts/state/posts.effects';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     allUsersComponent,
-    UserComponent
+    UserComponent,
+    UserPostsComponent
   ],
   imports: [
     BrowserModule,
@@ -43,9 +47,9 @@ import { MatInputModule } from '@angular/material/input';
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
-    StoreModule.forRoot({users:usersReducer}),
+    StoreModule.forRoot({users:usersReducer,posts:postsReducer}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
-    EffectsModule.forRoot([UserEffects]),
+    EffectsModule.forRoot([UserEffects,PostsEffects]),
     MatDialogModule,
     MatFormFieldModule,
     MatSelectModule,

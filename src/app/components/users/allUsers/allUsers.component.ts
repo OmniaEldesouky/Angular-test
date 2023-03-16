@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { userResponseData } from 'src/app/models/userResponseData';
@@ -6,6 +6,7 @@ import * as users from '../state/users.actions';
 import { getSelectedUser, getUsers } from '../state/users.reducer';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { UserComponent } from '../add-Edit/user/user.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -16,7 +17,7 @@ export class allUsersComponent implements OnInit {
   active:boolean=true;
   users!:Observable<userResponseData[]|null>
   selectedUser!:userResponseData;
-  constructor(private store:Store,public dialog: MatDialog){}
+  constructor(private store:Store,public dialog: MatDialog,private router : Router){}
 
   ngOnInit(): void {
     this.store.dispatch(users.getUsers());
@@ -33,7 +34,12 @@ export class allUsersComponent implements OnInit {
           data:res
         });
       }})
-
-
   }
+  deleteUser(id:string){
+    this.store.dispatch(users.deleteUser({id: parseInt(id)}));
+  }
+  getPosts(id:string){
+    this.router.navigate(['/posts'],{ queryParams: { id:id}})
+  }
+ 
 }

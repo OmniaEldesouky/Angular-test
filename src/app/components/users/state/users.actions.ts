@@ -20,7 +20,7 @@ export const getUser = createAction(
 );
 export const getUserSuccess = createAction(
     'GET_USER_SUCCESS',
-    props<{ data: userResponseData[] }>()
+    props<{ user: userResponseData[] }>()
 );
 export const getUserFailure = createAction(
     'GET_USER_FAIL',
@@ -43,3 +43,15 @@ export const addUserFailure = createAction(
 );
 
 
+export const deleteUser = createAction(
+  'DELETE_USER_STARTS',
+  props<{id:number}>()
+);
+export const deleteUserSuccess = createAction(
+  'DELETE_USER_SUCCESS',
+  props<{ user: userResponseData }>()
+);
+export const deleteUserFailure = createAction(
+  'DELETE_USER_FAIL',
+  props<{ error: any }>()
+);

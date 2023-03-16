@@ -26,19 +26,29 @@ export const initialState: State = {
     on(UsersActions.getUserSuccess,(state,action):State=>{
       return{
         ...state,
-        selectedUser: action.data[0]
+        selectedUser: action.user[0]
       }
     }),
     on(UsersActions.addUserSuccess,(state,action):State=>{
-
+      let user = action.user;
+      let oldList = [...[state.users]];
+      let newUser = [...[user]] 
       return{
         ...state,
-        // users: [
-        //   ...state.users,
-        //   {action.user}
-        // ]
+        users: [
+          // ...oldList,
+          // ...newUser
+        ]
       }
-    })
+    }),
+    on(UsersActions.deleteUserSuccess,(state,action):State=>{
+      console.log(action.user);
+      
+      return{
+        ...state,
+        selectedUser: action.user
+      }
+    }),
   );
 
   export function reducer(state: State | undefined, action: Action) {

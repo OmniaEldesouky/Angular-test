@@ -1,0 +1,21 @@
+mat-card-title {
+    color: black;
+}
+mat-card-content{
+    color: rgb(82, 82, 82);
+}
+.user-card {
+    max-width: 90%;
+    /* background-color: transparent; */
+    border: 1px solid rgb(15, 15, 15);
+  }
+  
+.example-header-image {
+    background-image: url('../../../../assets/images/profile.png');
+    background-size: cover;
+  }
+  mat-icon{
+    width: 50px;
+    color: red;
+    cursor: pointer;
+  }

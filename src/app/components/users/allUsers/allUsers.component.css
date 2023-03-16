@@ -16,5 +16,11 @@
     border: 4px solid aliceblue;
   }
   .active{
-    border: 4px solid green;
+    border: 4px solid #00FF00;
   }
+  :host ::ng-deep  .mat-mdc-card-header .mat-mdc-card-header-text .mat-mdc-card-subtitle{
+    font-size: 13px;
+  }
+  :host ::ng-deep .mat-mdc-dialog-container.mdc-dialog__surface{
+    overflow: hidden !important;
+}

@@ -33,7 +33,7 @@ export class UserEffects {
           (data) => this.service.getUser(data.id)
             .pipe(
               map(data => {
-                return users.getUserSuccess({data:data})
+                return users.getUserSuccess({user:data})
               }),
               catchError(error => of(users.getUserFailure(error)))
             )
@@ -57,6 +57,23 @@ export class UserEffects {
         ),
       )
   });
+
+  deleteUser$ = createEffect(() => {
+    return this.actions$
+      .pipe(
+        ofType(users.deleteUser),
+        mergeMap(
+          (data) => this.service.deleteUser(data.id)
+            .pipe(
+              map(data => {
+                return users.deleteUserSuccess({user:data})
+              }),
+              catchError(error => of(users.deleteUserFailure(error)))
+            )
+        ),
+      )
+  });
+
 
   constructor(private actions$: Actions, private service:UsersService ) { }
 }

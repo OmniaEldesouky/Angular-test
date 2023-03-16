@@ -1,11 +1,11 @@
 <div class="container-fluid">
-    <div class="row p-5">
-        <div class="col-md-2">
-            <button mat-button (click)="addUser()">Add User</button>
+    <div class="row p-5 justify-content-end">
+        <div class="col-md-2 p-0 d-flex justify-content-end">
+            <button mat-button color="primary" (click)="addUser()">Add User</button>
         </div>
     </div>
-    <div class="row p-5 gx-2 gy-5">
-        <mat-card class="example-card col-2 d-flex" *ngFor="let user of users|async">
+    <div class="row p-5 justify-content-between pt-0">
+        <mat-card class="example-card col-lg-2 col-md-3 col-sm-4 d-flex m-2 justify-content-center p-3" *ngFor="let user of users|async">
             <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" class="align-self-end">
                 <mat-icon>more_vert</mat-icon>
             </button>
@@ -14,7 +14,7 @@
                     <mat-icon>edit</mat-icon>
                     <span>Edit</span>
                 </button>
-                <button mat-menu-item>
+                <button mat-menu-item (click)="deleteUser(user.id)">
                     <span>Delete</span>
                     <mat-icon>delete</mat-icon>
                 </button>
@@ -22,10 +22,10 @@
             <mat-card-header class="d-flex flex-column w-100 h-75 align-items-center">
                 <div mat-card-avatar [ngClass]="user.status == 'active'? 'active' :'inactive'" class="profile-image"></div>
                 <mat-card-title class="text-center">{{user.name}}</mat-card-title>
-                <mat-card-subtitle class="text-center">{{user.email}}</mat-card-subtitle>
+                <mat-card-subtitle class="text-center h6">{{user.email}}</mat-card-subtitle>
             </mat-card-header>
-            <mat-card-actions>
-                <button mat-button>View Posts</button>
+            <mat-card-actions class="justify-content-center">
+                <button mat-button (click)="getPosts(user.id)">View Posts</button>
               </mat-card-actions>
         </mat-card>
     </div>
