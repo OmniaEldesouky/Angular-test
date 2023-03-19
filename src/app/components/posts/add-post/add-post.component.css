@@ -1,0 +1,7 @@
+.wrapper{
+    width:600px ;
+    height: 300px;
+}
+mat-icon{
+    cursor: pointer;
+}

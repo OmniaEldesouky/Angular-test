@@ -6,7 +6,7 @@
         <mat-card-title>{{(user|async)?.name}}</mat-card-title>
         <mat-card-subtitle>{{(user|async)?.email}}</mat-card-subtitle>
       </mat-card-header>
-      <button mat-stroked-button color="primary" class="mx-2 align-self-center">Add Post</button>
+      <button mat-stroked-button color="primary" class="mx-2 align-self-center" (click)="createNewPost()">Add Post</button>
     </mat-card>
   </div>
   <div class="postsWrapper row justify-content-center p-2">

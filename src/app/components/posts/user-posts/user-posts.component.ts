@@ -8,6 +8,8 @@ import * as user from '../../users/state/users.actions';
 import { getUserPosts } from '../state/posts.reducer';
 import { getSelectedUser } from '../../users/state/users.reducer';
 import { userResponseData } from 'src/app/models/userResponseData';
+import { MatDialog } from '@angular/material/dialog';
+import { AddPostComponent } from '../add-post/add-post.component';
 
 @Component({
   selector: 'app-user-posts',
@@ -20,7 +22,7 @@ export class UserPostsComponent implements OnInit{
   posts!:Observable<postResponseData[]|null>;
   user!:Observable<userResponseData|null>;
 
-  constructor(private _Activatedroute:ActivatedRoute,private store:Store,){}
+  constructor(private _Activatedroute:ActivatedRoute,private store:Store,public dialog: MatDialog){}
 
   ngOnInit(): void {
     this. _Activatedroute.queryParamMap
@@ -39,6 +41,8 @@ export class UserPostsComponent implements OnInit{
   deletePost(id:number){
     this.store.dispatch(posts.deletePosts({id:id}))
   }
-  
+  createNewPost(){
+    this.dialog.open(AddPostComponent,{data:this.id});
+  }
   
 }

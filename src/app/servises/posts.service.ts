@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { deletePost, getUserPosts } from '../config/apis';
+import { createPost, deletePost, getUserPosts } from '../config/apis';
 
 @Injectable({
   providedIn: 'root'
@@ -16,5 +16,9 @@ export class PostsService {
   deleteUserPost(id:number):Observable<any[]>{
     return this.http.delete<any[]>(deletePost+id+"/posts");
   }
+  creatUserPost(id:number,postData:any):Observable<any[]>{
+    return this.http.post<any[]>(createPost+id+"/posts",postData);
+  }
+
 
 }

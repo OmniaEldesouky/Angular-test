@@ -8,4 +8,4 @@ export const deleteUser = baseUrl + '/public/v2/users/';
 
 export const getUserPosts = baseUrl + "/public/v2/users/";
 export const deletePost = baseUrl + "/public/v2/users/"
-
+export const createPost = baseUrl + "/public/v2/users/"

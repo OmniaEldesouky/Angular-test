@@ -9,13 +9,16 @@ import {HttpClientModule} from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './config/jwt.interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddPostComponent } from './components/posts/add-post/add-post.component';
+import { UserPostsComponent } from './components/posts/user-posts/user-posts.component';
 
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import {usersReducer} from './components/users/state/users.reducer';
 import { UserEffects } from './components/users/state/users.effects';
-
+import { postsReducer } from './components/posts/state/posts.reducer';
+import { PostsEffects } from './components/posts/state/posts.effects';
 //angular material imports
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
@@ -26,9 +29,9 @@ import { UserComponent } from './components/users/add-Edit/user/user.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
-import { UserPostsComponent } from './components/posts/user-posts/user-posts.component';
-import { postsReducer } from './components/posts/state/posts.reducer';
-import { PostsEffects } from './components/posts/state/posts.effects';
+import {MatStepperModule} from '@angular/material/stepper';
+
+
 
 
 @NgModule({
@@ -36,7 +39,8 @@ import { PostsEffects } from './components/posts/state/posts.effects';
     AppComponent,
     allUsersComponent,
     UserComponent,
-    UserPostsComponent
+    UserPostsComponent,
+    AddPostComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +59,8 @@ import { PostsEffects } from './components/posts/state/posts.effects';
     MatSelectModule,
     MatInputModule,
     FormsModule, 
-    ReactiveFormsModule 
+    ReactiveFormsModule ,
+    MatStepperModule
   ],
   providers: [ {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}, ],
   bootstrap: [AppComponent]
